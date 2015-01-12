@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html lang="ja" ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <script src="js/angular.min.js"></script>
+    <script src="js/controllers.js"></script>
+    
+  </head>
+  <body>
+    <form ng-controller="StartUpController">
+    見込み：<input ng-change="computeNeeded()" ng-model="startingEstimate">
+    推奨：{{needed}}
+    <button ng-click="requestFunding()">出資を依頼する</button>
+    <button ng-click="reset()">リセット</button>
+  </form>
+
+
+  </body>
+  <script>
+    var myAppModule=angular.module("myApp",[]);
+
+    myAppModule.controller("StartUpController",function($scope){
+      var someText={};
+      someText.message="旅のはりまりです";
+      $scope.someText=someText;
+      /*
+      $scope.funding={startingEstimate:0};
+      var conputeNeeded=function(){
+        $scope.funding.needed=$scope.funding.startingEstimate*10;
+      }
+      $scope.$watch("funding.startingEstimate",conputeNeeded);
+      */
+      $scope.computeNeeded=function(){
+        $scope.needed=$scope.startingEstimate*10;
+      };
+      $scope.requestFunding=function(){
+        window.alert('もっと顧客をふやしてからにしてください');
+      };
+      $scope.reset=function(){
+        $scope.startingEstimate=0;
+        $scope.needed=0;
+      };
+    });
+  </script>
+</html>
