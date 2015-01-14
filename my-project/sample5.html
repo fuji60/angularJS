@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html lang="ja" ng-app>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <script src="js/angular.min.js"></script>
+    <script src="js/controllers.js"></script>
+
+    <style>
+    .menu-disabled-true{
+       color:gray;
+    }
+    .error{
+      background-color:red;
+    }
+    .warning{
+      background-color: yellow;
+    }
+    .selected{
+      background-color: lightgreen;
+    }
+
+    </style>
+    
+  </head>
+  <body>
+
+<!--   <div ng-controller="DeathrayMenuController">
+    <button ng-click="toggleMenu()">メニューをトグル</button>
+    <ul ng-show="menuState.show">
+      <li class="menu-disabled-{{isDisabled}}" ng-click="stun()">気絶</li>
+      <li ng-click="disintegrate()">崩壊</li>
+      <li ng-click="erase+()">歴史から消去</li>
+    </ul>
+  </div> -->
+<!--   <div ng-controller="HeaderController">
+    <div ng-class="{error:isError,warning:isWarning}">{{messageText}}</div>
+
+    <button ng-click="showError()">エラーを発生させる</button>
+    <button ng-click="showWarning()">渓谷を発生させる</button>
+  </div> -->
+
+  <table ng-controller="RestaurantTableController">
+    <tr ng-repeat="restaurant in directory" ng-click="selectRestaurant($index) "
+        ng-class="{selected: $index==selectedRow}">
+        <td>{{restaurant.name}}</td>
+        <td>{{restaurant.cuisine}}</td>
+      </tr>
+  </table>
+
+
+
+
+  </body>
+  <script>
+
+  function RestaurantTableController($scope){
+    $scope.directory=[
+    {name:"ハンサム",cuisine:"BBQ"},
+    {name:"ハンサム2",cuisine:"BBQ2"},
+    {name:"ハンサム3",cuisine:"BBQ3"}
+
+    ];
+    $scope.selectRestaurant=function(row){
+      $scope.selectedRow=row;
+    }
+  }
+/*  function HeaderController($scope){
+    $scope.isError=false;
+    $scope.isWarning=false;
+
+    $scope.showError=function(){
+      $scope.messageText="エラー発生";
+      $scope.isError=true;
+      $scope.isWarning=false;
+    }
+
+    $scope.showWarning=function(){
+      $scope.messageText="単なる渓谷でs。惣社をつづけてください";
+      $scope.isError=false;
+      $scope.isWarning=true;
+    }
+  }
+*/
+
+
+   /* function DeathrayMenuController($scope){
+      $scope.menuState={show:false};
+
+      $scope.toggleMenu=function(){
+        $scope.menuState.show=!$scope.menuState.show;
+      };
+
+      $scope.isDisabled=false;
+
+      $scope.stun=function(){
+        $scope.isDisabled=!$scope.isDisabled;
+      }
+    }*/
+  </script>
+</html>
