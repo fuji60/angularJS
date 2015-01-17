@@ -40,21 +40,58 @@
     <button ng-click="showError()">エラーを発生させる</button>
     <button ng-click="showWarning()">渓谷を発生させる</button>
   </div> -->
-
+<!-- 
   <table ng-controller="RestaurantTableController">
     <tr ng-repeat="restaurant in directory" ng-click="selectRestaurant($index) "
         ng-class="{selected: $index==selectedRow}">
         <td>{{restaurant.name}}</td>
         <td>{{restaurant.cuisine}}</td>
       </tr>
-  </table>
-
-
+  </table> -->
+  <div ng-controller="CartController">
+    <div ng-repeat="item in items">
+      <span>{{item.title}}</span>
+      <input ng-model="item.quantity">
+      <span>{{item.price|currency}}</span>
+      <span>{{item.price*item.quantity|currency}}</span>
+    </div>
+    <div>小計：{{totalCart()|currency}}</div>
+    <div>値引き：{{bill.discount|currency}}</div>
+    <div>合計：{{subtotal()|currency}}</div>
+  </div>
 
 
   </body>
   <script>
 
+  function CartController($scope){
+    $scope.bill={};
+
+    $scope.items=[
+    {title:"ペイントポット",quantity:8,price:3.95},
+    {title:"ペイントポ",quantity:17,price:12.95},
+    {title:"ペイント",quantity:5,price:6.95}
+    ];
+
+    $scope.totalCart=function(){
+      var i=0;
+      console.log(i++);
+      var total=0;
+      for(var i=0, len=$scope.items.length; i<len;i++){
+        total=total+$scope.items[i].price*$scope.items[i].quantity;
+      }
+      return total;
+    };
+
+    $scope.subtotal=function(){
+      return $scope.totalCart()-$scope.bill.discount;
+    };
+    function calculateDiscount(newValue,oldValue,scope){
+      $scope.bill.discount=newValue>100?10:0;
+    }
+    $scope.$watch($scope.totalCart,calculateDiscount);
+  }
+/*
   function RestaurantTableController($scope){
     $scope.directory=[
     {name:"ハンサム",cuisine:"BBQ"},
@@ -66,7 +103,7 @@
       $scope.selectedRow=row;
     }
   }
-/*  function HeaderController($scope){
+*//*  function HeaderController($scope){
     $scope.isError=false;
     $scope.isWarning=false;
 
