@@ -23,23 +23,12 @@
  }
 </style>   
   </head>
-  <body ng-init="isOpen=0">
-    <details ng-open="isOpen">
-      <summery>著者</summery>
-      <ul>
-        <li>can_i_do_web</li>
-        <li>zoetro</li>
-        <li>teyosh</li>
-      </ul>
-    </details>
+  <body>
+    <input type="text" ng-model="myName">
+    <p ng-bind-html="myName">
   </body>
-  <input type="checkbox" ng-model="isOpen">
   <script>
-    var Module=angular.module('myModule',['ngSanitize']);
-    Module.controller("myController",MyController);
-
-    function MyController($scope){
-      $scope.myName="hoge";
-    }
+    angular.module('myModule',['ngSanitize']);
+    
   </script>
 </html>
