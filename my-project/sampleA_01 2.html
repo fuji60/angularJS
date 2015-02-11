@@ -58,10 +58,13 @@
 </form>
 <p>{{message}}</p> -->
 
-<input type="text" ng-model="normalModel">
-{{normalModel}}:文字の長さ{{normalModel.length}}
-<input type="text" ng-model="trimModel" ng-trim="false">
-{{trimModel}}:文字の長さ{{trimModel.length}}
+
+<script type="text/ng-template" id="template.html">
+テンプレートとして定義
+</script>
+
+<div ng-include src="'template.html'"></div>
+
   
   </body>
   <script>
