@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="ja" ng-app="myApp">
+<html lang="ja" ng-app="app">
   <head>
     <meta charset="utf-8">
     <title></title>
@@ -23,55 +23,33 @@
  }
 </style>   
   </head>
-  <body ng-controller="myController" ng-keypress="keydown()">
-<!--     <p>一般的なCSSのような定義方法</p>
-<p ng-class="'lightgray'">lightglay</p>
-<p ng-class=['lightgray','underline']>二つ適応</p>
-
-<p ng-init="mdlLightGray='lightgray';
-            mdlLarge='learge';
-            mdlUnderline='underline';">
-            配列での定義方法</p>
-
-<p ng-class="[mdlLightGray, 'large']">koremofutatu</p>
-<p ng-class="mdlLarge">lightglay</p>
-
-<p ng-class="{
-  lightgray:chkone,
-  large:chktwo,
-  underline:chkthree
-}">kkk</p>
-
-<input type="checkbox" ng-model="chkone">
-<input type="checkbox" ng-model="chktwo">
-<input type="checkbox" ng-model="chkthree">
- -->
-
-<!--  <textarea cols="60" rows="15" ng-change="change()" ng-model="tweet"></textarea>
-<p><span ng-hide="isOver">残り</span>{{count}}文字
-  <span ng-show="isOver">オーバーしています</span></p>
--->
-
-<!-- <form ng-submit="submit($event)">
-  <label><input type="checkbox" ng-model="myModel">同意する</label>
-  <input type="submit" value="submit">
-</form>
-<p>{{message}}</p> -->
+  <body>
 
 
-<script type="text/ng-template" id="template.html">
-テンプレートとして定義
-</script>
 
-<div ng-include src="'template.html'"></div>
 
-  
   </body>
   <script>
-    angular.module('myApp',[]).controller('myController',['$scope',function($scope){
+  var app=angular.module('app',['ngTouch']);
+  app.controller('swipe',['$scope','$swipe',function($scope,$swipe){
+    var touchEventHandler=function(obj,event){
+      console.log(event.type);
+      console.log(obj);
+    }
+    $swipe.bind(angular.element(document.getElementByTagName('body')),{
+      'start':touchEvetHandler,
+      'move':touchEventHandler,
+      'cancel':function(event){
+        console.log(event);
+      },
+      'end':touchEventHandler
+    })
+  }]);
 
+/*  app,controller('scope2',['$rootScope','$scope',function($rootScope,$scope){
+    $scope.test="test02";
+    $rootScope.rootTest="rootTest02";
+  }])*/
 
-
-    }])
   </script>
 </html>
