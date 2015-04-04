@@ -11,48 +11,113 @@
 <!--     <script src="js/app.js"></script>
  -->
 
- <style>
- .lightgray{
-  background-color:#FF0;
-  font-size:x-small;
- }
- .large{
-  font-size:x-large;
- }
- .underline{
-  text-decoration: underline;
- }
- body {
- }
+<style>
+  .lightgray{color:#999;}
+  .large{font-size:x-large;}
+  .underline{text-decoration:underline;}
 </style>   
   </head>
   <body ng-controller="swipe">
 
+  <div>
 
 
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+    <p>{{count}}</p>
+  </div>
+
+  
 
   </body>
   <script>
-  var app=angular.module('app',['ngTouch']);
-  app.controller('swipe',['$scope','$swipe',function($scope,$swipe){
-    var touchEventHandler=function(obj,event){
-      console.log(event.type);
-      console.log(obj);
-    }
-    $swipe.bind(angular.element(document.getElementsByTagName('body')),{
-      'start':touchEventHandler,
-      'move':touchEventHandler,
-      'cancel':function(event){
-        console.log(event);
-      },
-      'end':touchEventHandler
-    })
-  }]);
 
-/*  app,controller('scope2',['$rootScope','$scope',function($rootScope,$scope){
-    $scope.test="test02";
-    $rootScope.rootTest="rootTest02";
-  }])*/
+  var app=angular.module('app',['ngTouch']);
+
+  app.controller('swipe',['$scope','$swipe','$timeout',function($scope,$swipe,$timeout){
+    
+
+    function MyClass(){
+      this.message='Hello,World';
+    }
+
+    MyClass.prototype.getMessage=function(){
+      console.log(this.message);
+    };
+
+    MyClass.prototype.setCallback=function(){
+      $timeout(this.getMessage,1000);
+      $timeout(angular.bind(this,this.getMessage),2000);
+    };
+
+    var c= new MyClass();
+    c.setCallback();
+
+  }])
+
 
   </script>
 </html>
